@@ -9,7 +9,7 @@ Our project is an example of an online store of digital goods (game accounts and
 1) in the console go to the "Shop" folder
 2) then, write the command "python manage.py runserver"
 
-👉To enter the admin panel:
+👉 To enter the admin panel:
 
 1) follow the link "http://127.0.0.1:8000/admin/"
 2) write "admin" in the login field
