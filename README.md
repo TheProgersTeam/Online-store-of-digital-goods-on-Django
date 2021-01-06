@@ -7,7 +7,8 @@ Our project is an example of an online store of digital goods (game accounts and
 👉 Follow these steps to run the project:
 
 1) in the console go to the "Shop" folder
-2) then, write the command "python manage.py runserver"
+2) write the command "pip install -r requirements.txt"
+3) then, write the command "python manage.py runserver"
 
 👉 To enter the admin panel:
 
