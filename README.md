@@ -22,5 +22,3 @@ Our project is an example of an online store of digital goods (game accounts and
 1) in the console go to the "Shop" folder
 2) write the command "python manage.py createsuperuser"
 3) then enter "username", "email" and "password"
-
-Made with ❤️ by TheProgersTeam
