@@ -1,4 +1,5 @@
 Django==2.2.13
 django-filter==2.4.0
 django-mathfilters==1.0.0
-
+Pillow==8.2.0
+django-summernote==0.8.11.6

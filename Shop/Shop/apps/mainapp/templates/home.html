@@ -1,0 +1,225 @@
+{% extends '@main.html' %}
+
+{% load static %}
+{% block content %}
+
+ {% for i in settings %}
+    {% if i.loader == "YES" %}
+
+
+        <style>
+            .content{
+              height: 100vh;
+              width: 100%;
+              background: #f2edf3;
+              display: none;
+            }
+            .loader {
+              position: absolute;
+              width: 150px;
+              height: 150px;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              margin: auto;
+            }
+    
+            .item {
+              width: 75px;
+              height: 75px;
+              position: absolute;
+            }
+    
+            .item-1 {
+              background-color: #FA5667;
+              top: 0;
+              left: 0;
+              z-index: 1;
+              animation: item-1_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
+            }
+    
+            .item-2 {
+              background-color: #7A45E5;
+              top: 0;
+              right: 0;
+              animation: item-2_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
+            }
+    
+            .item-3 {
+              background-color: #1B91F7;
+              bottom: 0;
+              right: 0;
+              z-index: 1;
+              animation: item-3_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
+            }
+    
+            .item-4 {
+              background-color: #FAC24C;
+              bottom: 0;
+              left: 0;
+              animation: item-4_move 1.8s cubic-bezier(.6,.01,.4,1) infinite;
+            }
+    
+            @keyframes item-1_move {
+              0%, 100% {transform: translate(0, 0)} 
+              25% {transform: translate(0, 75px)} 
+              50% {transform: translate(75px, 75px)} 
+              75% {transform: translate(75px, 0)} 
+            }
+    
+            @keyframes item-2_move {
+              0%, 100% {transform: translate(0, 0)} 
+              25% {transform: translate(-75px, 0)} 
+              50% {transform: translate(-75px, 75px)} 
+              75% {transform: translate(0, 75px)} 
+            }
+    
+            @keyframes item-3_move {
+              0%, 100% {transform: translate(0, 0)} 
+              25% {transform: translate(0, -75px)} 
+              50% {transform: translate(-75px, -75px)} 
+              75% {transform: translate(-75px, 0)} 
+            }
+    
+            @keyframes item-4_move {
+              0%, 100% {transform: translate(0, 0)} 
+              25% {transform: translate(75px, 0)} 
+              50% {transform: translate(75px, -75px)} 
+              75% {transform: translate(0, -75px)} 
+            }
+        </style>
+    {% endif %} 
+{% endfor %}
+
+<title>{{ title }}</title>
+
+    {% for i in settings %}
+        {% if i.slyder == "YES" %}
+            {% if first_slide != "NO" %}
+              <div class="container" data-aos="fade-down">
+                <section class="jumbotron text-center" style="background-color: #fff;">
+                    <div id="carouselExampleControls" class="carousel slide main-carousel" data-ride="Carousel_product">
+                        <ol class="carousel-indicators">
+                            <li data-target="#Carousel_product" data-slide-to="{{ first_slide.id }}" class="active"></li>
+                            {% for i in slider_num %}
+                              <li data-target="#Carousel_product" data-slide-to="{{ i.id }}"></li>
+                            {% endfor %}
+                        </ol>
+                        <div class="carousel-inner" style="box-shadow: 0px 3px 8px rgba(0,0,0,0.5);">
+        
+                        {% if first_slide.product in products %}
+                          <div class="carousel-item active">
+                              <img src="{{ first_slide.product.image.url }}" class="card-img-top model-img">
+                              <div class="container">
+                                <div class="carousel-caption">
+                                  <h2>{{ first_slide.product.name }}</h2>
+                                  {% for j in settings %}
+                                    <p><a class="btn btn-md btn-{{ j.buttons_style }}" href="{% url 'product' first_slide.product.id %}" role="button">{{ first_slide.product.price }}$</a></p>
+                                  {% endfor %}
+                                </div>
+                              </div>
+                          </div>
+                        {% endif %}
+        
+                      
+                        {% for i in slider_num %}
+                          {% if i.product in products %}
+                            <div class="carousel-item activ">
+                                <img src="{{i.product.image.url}}" class="card-img-top model-img">
+                                <div class="container">
+                                  <div class="carousel-caption">
+                                    <h2>{{ i.product.name }}</h2>
+                                    {% for j in settings %}
+                                        <p><a class="btn btn-md btn-{{ j.buttons_style }}" href="{% url 'product' i.product.id %}" role="button">{{ i.product.price }}$</a></p>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+                            </div>
+                          {% endif %}
+                        {% endfor %}
+        
+                   
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </section>
+              </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+      <div class="container">
+        <div class="row">
+          {% for i in products %}
+            {% if i.status == "Active" %}
+              <div class="col-lg-4" data-aos="zoom-in">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card">
+                      {% if i.key_account == "KEY" %}
+                        <span class="key_account"><i class="fas fa-key"></i></span>
+                      {% endif %}
+                      <img src="{{i.image.url}}" class="card-img-top product-img">
+                    </div>
+                    <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="card-title" style="font-size: 1.2rem;">
+                            {% if i.new == "YES" and i.email == "YES" and i.discount != "0" %}
+                              <b class="home-product-text" style="font-weight: 500; display: inline;">{{ i.name|truncatechars:11 }}</b>
+                            {% endif %}
+                            {% if i.new != "YES" and i.email != "YES" and i.discount == "0" %}
+                              <b class="home-product-text" style="font-weight: 500; display: inline;">{{ i.name|truncatechars:22 }}</b>
+                            {% endif %}
+
+                            {% if i.new == "YES" and i.email == "YES" and i.discount == "0" %}
+                              <b class="home-product-text" style="font-weight: 500; display: inline;">{{ i.name|truncatechars:14  }}</b>
+                            {% endif %}
+                            {% if i.email == "YES" and i.discount != "0" and i.new != "YES" %}
+                              <b class="home-product-text" style="font-weight: 500; display: inline;">{{ i.name|truncatechars:14  }}</b>
+                            {% endif %}
+                            {% if i.new == "YES" and i.discount != "0" and i.email != "YES" %}
+                              <b class="home-product-text" style="font-weight: 500; display: inline;">{{ i.name|truncatechars:15  }}</b>
+                            {% endif %}
+                      
+                            {% if i.new == "YES" and i.discount == "0" and i.email != "YES" %}
+                              <b class="home-product-text" style="font-weight: 500; display: inline;">{{ i.name|truncatechars:19  }}</b>
+                            {% endif %}
+                            {% if i.email == "YES" and i.discount == "0" and i.new != "YES" %}
+                              <b class="home-product-text" style="font-weight: 500; display: inline;">{{ i.name|truncatechars:18  }}</b>
+                            {% endif %}
+                            {% if i.discount != "0" and i.new != "YES" and i.email != "YES" %}
+                              <b class="home-product-text" style="font-weight: 500; display: inline;">{{ i.name|truncatechars:18  }}</b>
+                            {% endif %}
+
+                            {% if i.new == "YES" %}
+                              <sup><span class="badge badge-success">New</span></sup>
+                            {% endif %}
+                            {% if i.email == "YES" %}
+                              <sup><span class="badge badge-success">Email</span></sup>
+                            {% endif %}
+                            {% if i.discount != "0" %}
+                              <sup><span class="badge badge-danger">-{{ i.discount }}%</span></sup>
+                            {% endif %}
+                        </h4>
+                        {% for j in settings %}
+                            <a href="{% url 'product' i.id %}"><button type="button" class="btn btn-outline-{{ j.buttons_style }}">{{ i.price }}$</button></a>
+                        {% endfor %}
+                    </div>  
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}  
+          </div>
+
+        
+
+        </div>
+      </div>
+{% endblock content %}
