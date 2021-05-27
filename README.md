@@ -1,24 +1,21 @@
-# Online-store-of-digital-goods-on-Django
+# Online store of digital goods with Django
 
-About the project 👾
+## What is it?
+My project is an example of an online store of digital goods (game accounts and keys) 😁
 
-Our project is an example of an online store of digital goods (game accounts and keys) 😁
+## What used?
+* Python 3.7+
+* Django 3
+* CSS 3
+* HTML 5
+* Bootstrap 4
 
-👉 Follow these steps to run the project:
+## How to run?
+In order to run this project you need:
+1) Installation `requarements.txt` file with the `pip install -r requarements.txt` command
+2) Run `Shop` with the `python manage.py runserver` command
 
-1) in the console go to the "Online-store-of-digital-goods-on-Django-main" folder
-2) write the command "pip install -r requirements.txt"
-3) in the console go to the "Shop" folder
-4) then, write the command "python manage.py runserver"
-
-👉 To enter the admin panel:
-
-1) follow the link "http://127.0.0.1:8000/admin/"
-2) write "admin" in the login field
-3) in the password field write "12344321"
-
-👉 To create a new administrator follow these steps:
-
-1) in the console go to the "Shop" folder
-2) write the command "python manage.py createsuperuser"
-3) then enter "username", "email" and "password"
+To enter the admin panel:
+Link http://127.0.0.1:8000/admin/
+* Username: admin
+* Password: 12344321
