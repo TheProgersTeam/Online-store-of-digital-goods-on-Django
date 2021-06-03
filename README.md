@@ -1,7 +1,7 @@
 # Online store of digital goods with Django
 
 ## What is it?
-My project is an example of an online store of digital goods (game accounts and keys) 😁
+My project is an example of an online store of digital goods (game accounts and keys)
 
 ## What used?
 * Python 3.7+
