@@ -12,7 +12,7 @@ My project is an example of an online store of digital goods (game accounts and 
 
 ## How to run?
 In order to run this project you need:
-1) Installation `requirements.txt` file with the `pip install -r requarements.txt` command
+1) Installation `requirements.txt` file with the `pip install -r requirements.txt` command
 2) Run `Shop` with the `python manage.py runserver` command
 
 To enter the admin panel:
